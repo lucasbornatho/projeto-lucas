@@ -3,10 +3,9 @@ import Cabecalho from "../components/cabecalho"
 
 function Home () {
     return (
-        <div className='home'>
-            <Cabecalho  titulo='home'  
-                      pagina='home' 
-                      parametro='home' />
+        <div>
+            <Cabecalho />
+            <h1 className='home'>HOME!</h1>
             <Rodape />
         </div>
     )

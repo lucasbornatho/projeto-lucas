@@ -10,6 +10,7 @@ import Comunicacao from './pages/comunicacao'
 import Requisicoes from './pages/requisicoes'
 import RequisicoesTypes from './pages/requisicoestypes'
 import RequisicoesTypesAsync from './pages/requisicoestypesasync'
+import RequisicoesPost from './pages/requisicoespost'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
       <Route path='/requisicoes' element= {<Requisicoes />} />
       <Route path='/requisicoestypes' element= {<RequisicoesTypes />} />
       <Route path='/requisicoestypesasync' element= {<RequisicoesTypesAsync />} />
+      <Route path='/requisicoespost' element = {<RequisicoesPost />} />
     </Routes>
   )
 }

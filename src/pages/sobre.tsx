@@ -5,7 +5,7 @@ import { useState } from "react";
 function Sobre () {
 
         function handleMensagem(){
-            alert('Palmeiras não tem mundial!')
+            alert('HAHAHHAHAHAHHAHA!')
         }
 
         let [numero, setnumero] = useState(0);
