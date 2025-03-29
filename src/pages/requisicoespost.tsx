@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { ChangeEvent, useState } from "react"
 import Cabecalho from "../components/cabecalho";
 import { Usuario } from "../types/usuarios";
 
@@ -14,7 +14,7 @@ function RequisicoesPost() {
         setLoading(true)
 
         try {
-            let response = await fetch('https://jsonplaceholder.typicode.com/todos');
+            let response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
             let json = await response.json();
 
             const dataArray = Array.isArray(json) ? json : [json];
@@ -28,6 +28,48 @@ function RequisicoesPost() {
             console.error(erro)
         }
     }
+
+    const[addTitleText, setAddTitleText] = useState('');
+    const handleAddTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setAddTitleText(e.target.value)
+    }
+
+    const[addBodyText, setAddBodyText] = useState('');
+    const handleAddBodyChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        setAddBodyText(e.target.value)
+    }
+
+    const handleAddClick = async () => {
+
+        if (addTitleText && addBodyText) {
+            let response = await fetch('https://jsonplaceholder.typicode.com/posts',
+            {
+                method: 'POST',
+                body: JSON.stringify({
+                    title: addTitleText,
+                    body: addBodyText,
+                    userId: 1}),                
+                
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            let json = await response.json();
+
+            console.log(json);
+
+            if(json.id){
+                alert('Post adicionado com sucesso')
+                setUsuarios((usuarios) => [...usuarios, json]);
+            } else {
+                alert('Ocorreu alguma falha')
+            }
+        } else {
+            alert('Preencha as informações.')
+        }
+
+    }
+
  
     return (
         <div>
@@ -37,11 +79,11 @@ function RequisicoesPost() {
             <h1>PAGINA EXEMPLO DE REQUISIÇÕES</h1>
             <br />
             <h1>Adicionar Novo Post</h1>
-            <input type='text' placeholder='Digite um Título'></input>
+            <input value={addTitleText} type='text' placeholder='Digite um Título' onChange={handleAddTitleChange}></input>
             <br />
-            <textarea></textarea>
+            <textarea value={addBodyText} onChange={handleAddBodyChange}></textarea>
             <br />
-            <button>Adicionar!</button>
+            <button onClick={handleAddClick}>Adicionar!</button>
             <br />
             <br />
             <br />
@@ -64,6 +106,7 @@ function RequisicoesPost() {
                     <br />
                     <p>{item.title}</p>
                     <br />
+                    <p>{item.body}</p>
                 <hr />
             </li>
         ))}
