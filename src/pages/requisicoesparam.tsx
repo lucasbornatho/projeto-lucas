@@ -3,6 +3,7 @@ import Cabecalho from "../components/cabecalho";
 import UsuarioItem from "../components/usuarioitem";
 import { api } from "../api";
 import { Usuario } from "../types/usuarios";
+import FormPost from "../components/formpost";
 
 function RequisicoesParam() {
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
@@ -27,6 +28,19 @@ function RequisicoesParam() {
     }
 }
 
+  const handleAddClick = async (sTitle: string, sBody: string) => {
+          
+    let json = await api.AdicionarUsuarios(sTitle, sBody, 1);
+
+    if(json.id){
+        alert('Post adicionado com sucesso')
+        setUsuarios((usuarios) => [...usuarios, json]);
+    } else {
+        alert('Falha ao adicionar usuário')
+    }
+      
+  }
+
   const handleParamBuscaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setParamBusca(event.target.value);
   };
@@ -34,6 +48,8 @@ function RequisicoesParam() {
   return (
     <div>
       <Cabecalho />
+      <br />
+      <FormPost onAdd={handleAddClick} />
       <br />
       {loading && <div>Carregando conteúdo...</div>}
 
