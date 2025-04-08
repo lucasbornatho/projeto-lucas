@@ -28,6 +28,9 @@ function Menu () {
             <div className="menu-botao">
                 <Link to='/requisicoespostRefact' className='link-botao-menu'> RequisiçõesPostRefact </Link>
             </div>
+            <div className="menu-botao">
+                <Link to='/requisicoesParam' className='link-botao-menu'> RequisiçõesParam </Link>
+            </div>
         </div>
     )
 }
