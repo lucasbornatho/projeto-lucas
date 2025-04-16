@@ -1,7 +1,8 @@
 import Rodape from "../components/rodape"
 import Cabecalho from "../components/cabecalho"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { UsuarioLogadoContext } from "../contexts/contextAuth"
+import { Alert } from "reactstrap";
 
 function Home () {
 
